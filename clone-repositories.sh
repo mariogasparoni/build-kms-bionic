@@ -30,13 +30,17 @@ git clone $PROJECT_URL/kms-jsonrpc
 #These modules Follow the kurento main version
 git clone $PROJECT_URL/kms-core
 cd kms-core && git checkout KURENTO_BRANCH
+cd ..
 
 git clone $PROJECT_URL/kms-elements
 cd kms-elements && git checkout KURENTO_BRANCH
+cd ..
 
 git clone $PROJECT_URL/kms-filters
 cd kms-filters && git checkout KURENTO_BRANCH
+cd ..
 
 #kurento
 git clone $PROJECT_URL/kurento-media-server
 cd kurento-media-server && git checkout KURENTO_BRANCH
+cd .. 
