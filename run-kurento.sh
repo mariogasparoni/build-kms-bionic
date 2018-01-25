@@ -5,7 +5,7 @@ ROOT=`pwd`
 KURENTO_MEDIA_SERVER_DIR=$ROOT/kurento-media-server
 
 DEBUG_LEVEL=4;
-#DEBUG_LEVEL=4;
+DEBUG_LEVEL=2,*treebin*:6,*elementfactory*:6,*endpoint*:6,*agnostic*:6;
 KMS_CORE_DIR=$ROOT/kms-core
 KMS_FILTERS_DIR=$ROOT/kms-filters
 KMS_ELEMENTS_DIR=$ROOT/kms-elements

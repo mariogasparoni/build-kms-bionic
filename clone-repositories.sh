@@ -2,45 +2,30 @@
 
  set -x
 sudo apt-get install -y git
-PROJECT_URL=https://github.com/Kurento
-KURENTO_BRANCH=6.6.1
+KURENTO_URL=https://github.com/Kurento
+KURENTO_VERSION=master
 
-#gstreamer
-git clone $PROJECT_URL/gstreamer
-
-#gstreamer plugins (system-wide install)
-git clone $PROJECT_URL/gst-libav
-git clone $PROJECT_URL/gst-plugins-bad
-git clone $PROJECT_URL/gst-plugins-base
-git clone $PROJECT_URL/gst-plugins-good
-git clone $PROJECT_URL/gst-plugins-ugly
-git clone $PROJECT_URL/libnice
+./clone-gstreamer-and-plugins.sh
 
 #kurento deps (system-wide install)
-git clone $PROJECT_URL/jsoncpp
-git clone $PROJECT_URL/usrsctp
-git clone $PROJECT_URL/openwebrtc-gst-plugins
-git clone $PROJECT_URL/libsrtp
+for dep in jsoncpp usrsctp openwebrtc-gst-plugins libsrtp
+do
+  git clone $KURENTO_URL/$dep
+  cd $dep
+  git checkout $KURENTO_VERSION
+  cd ..
+done;
 
 #kurento modules (all build-locally)
-git clone $PROJECT_URL/kms-cmake-utils
-git clone $PROJECT_URL/kurento-module-creator
-git clone $PROJECT_URL/kms-jsonrpc
+for module in kms-cmake-utils kurento-module-creator kms-jsonrpc kms-core kms-elements kms-filters
+do
+  git clone $KURENTO_URL/$module
+  cd $module
+  git checkout $KURENTO_VERSION
+  cd ..
+done;
 
-#These modules Follow the kurento main version
-git clone $PROJECT_URL/kms-core
-cd kms-core && git checkout KURENTO_BRANCH
+#kurento media server
+git clone $KURENTO_URL/kurento-media-server
+cd kurento-media-server && git checkout $KURENTO_VERSION
 cd ..
-
-git clone $PROJECT_URL/kms-elements
-cd kms-elements && git checkout KURENTO_BRANCH
-cd ..
-
-git clone $PROJECT_URL/kms-filters
-cd kms-filters && git checkout KURENTO_BRANCH
-cd ..
-
-#kurento
-git clone $PROJECT_URL/kurento-media-server
-cd kurento-media-server && git checkout KURENTO_BRANCH
-cd .. 
