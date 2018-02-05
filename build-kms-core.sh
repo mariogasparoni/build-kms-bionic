@@ -1,13 +1,12 @@
 #!/bin/bash
 
 set -xe
+
 ROOT=`pwd`
 KMS_CORE_DIR=$ROOT/kms-core
+
 #Install dependencies
 ./install-base-dependencies.sh
-
-#Uncoment 'builds' scripts if this is the first time building
-
 
 #Build kms-cmake-utils
 #Make sure kms-cmake-utils and kms-core are in the same path
@@ -19,18 +18,13 @@ KMS_CMAKE_UTILS_DIR=$ROOT/kms-cmake-utils
 KURENTO_MODULE_CREATOR_DIR=$ROOT/kurento-module-creator
 ./build-kurento-module-creator.sh
 
-#Build (or install from repos) gstreamer
-#Last code of kms-core needs the last version of gstreamer1.5,
-# which isn't in kms repos yet... So, i will compile gstreamer
-#./build-libgstreamer.sh
-
 #Build kms-jsonrpc
 KMS_JSONRPC_DIR=$ROOT/kms-jsonrpc
 ./build-kms-jsonrpc.sh
 
 KMS_JSONCPP_DIR=$ROOT/jsoncpp
 
-#TODO: allow jsoncpp to be imported locally (maybe add FindKmsJsonCpp file  )
+#TODO: allow jsoncpp to be imported locally (maybe add FindKmsJsonCpp file)
 LIBRARY_PATH="$KMS_JSONCPP_DIR/src/lib_json";
 
 #Build kms-core

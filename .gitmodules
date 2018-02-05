@@ -1,0 +1,3 @@
+[submodule "build-gstreamer"]
+	path = build-gstreamer
+	url = https://github.com/mariogasparoni/build-gstreamer

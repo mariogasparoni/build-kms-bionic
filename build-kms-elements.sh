@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# Run build-kms-core.sh before building this module
 set -xe
 
 ROOT=`pwd`
@@ -10,21 +10,17 @@ KURENTO_MODULE_CREATOR_DIR=$ROOT/kurento-module-creator
 KMS_JSONRPC_DIR=$ROOT/kms-jsonrpc
 KMS_JSONCPP_DIR=$ROOT/jsoncpp
 
-#Run build-kms-core.sh if the above modules aren't built
-
 LIBRARY_PATH="$KMS_JSONCPP_DIR/src/lib_json";
-
 
 #Install dependencies
 sudo apt-get install --no-install-recommends -y libsoup2.4-dev libnice-dev
 
 #Uncoment 'builds' scripts if this is the first time building
 #Build openwebrtc-gst-plugins
-#./build-openwebrtc-gst-plugins.sh
+./build-openwebrtc-gst-plugins.sh
 
 #Build libsrtp
 ./build-libsrtp.sh
-
 
 #build kms-elements
 cd $KMS_ELEMENTS_DIR
@@ -41,7 +37,7 @@ LIBRARY_PATH="$KMS_JSONCPP_DIR/src/lib_json";
 env LD_LIBRARY_PATH=$LIBRARY_PATH LIBRARY_PATH=$LIBRARY_PATH make
 
 #Tests
-GST_PLUGIN_PATH="$KMS_CORE_DIR/server:$KMS_CORE_DIR/src/gst-plugins:$KMS_ELEMENTS_DIR/src/server:$KMS_ELEMENTS_DIR/src/gst-plugins";
+# GST_PLUGIN_PATH="$KMS_CORE_DIR/server:$KMS_CORE_DIR/src/gst-plugins:$KMS_ELEMENTS_DIR/src/server:$KMS_ELEMENTS_DIR/src/gst-plugins";
 
 #run all tests
 #env GST_PLUGIN_PATH=$GST_PLUGIN_PATH LD_LIBRARY_PATH=$LIBRARY_PATH LIBRARY_PATH=$LIBRARY_PATH make check

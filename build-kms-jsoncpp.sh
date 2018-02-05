@@ -9,5 +9,5 @@ cd $KMS_JSONCPP_DIR
 cmake -DBUILD_SHARED_LIBS="ON" .
 make
 
-#You can system-wide install , or point this path to your app's CMAKE
+#System-wide install (TODO: install and link locally)
 sudo make install
