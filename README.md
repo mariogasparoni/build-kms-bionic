@@ -7,6 +7,7 @@ system-wide/apt installing Kurento Media Server
 Init submodule
 ```bash
 git submodule init
+git submodule update
 ```
 
 To build master version:
