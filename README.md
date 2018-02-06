@@ -4,6 +4,11 @@ system-wide/apt installing Kurento Media Server
 
 
 ### Build GStreamer and make a system-wide installation
+Init submodule
+```bash
+git submodule init
+```
+
 To build master version:
 ```bash
 cd build-gstreamer
