@@ -20,7 +20,7 @@ sudo apt-get install --no-install-recommends -y libsoup2.4-dev libnice-dev
 
 #Uncoment 'builds' scripts if this is the first time building
 #Build openwebrtc-gst-plugins
-#./build-openwebrtc-gst-plugins.sh
+./build-openwebrtc-gst-plugins.sh
 
 #Build libsrtp
 ./build-libsrtp.sh
