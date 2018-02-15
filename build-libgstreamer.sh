@@ -2,7 +2,7 @@
 
 
 #gstreamer deps
-sudo apt-get install --no-install-recommends -y automake autoconf autopoint bison flex gtk-doc-tools libglib2.0-dev
+sudo apt-get update && sudo apt-get install --no-install-recommends -y automake autoconf autopoint bison flex gtk-doc-tools libglib2.0-dev
 
 #clone repos
 ./clone-gstreamer-and-plugins.sh
