@@ -7,7 +7,7 @@ ROOT=`pwd`
 GST_PLUGINS_BASE_DIR=$ROOT/gst-plugins-base
 cd $GST_PLUGINS_BASE_DIR
 
-./autogen.sh
+./autogen.sh --enable-gtk-doc=no
 make
 echo 'You can now make install..'
 sudo make install

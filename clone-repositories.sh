@@ -5,8 +5,6 @@ sudo apt-get install -y git
 KURENTO_URL=https://github.com/Kurento
 KURENTO_VERSION=master
 
-./clone-gstreamer-and-plugins.sh
-
 #kurento deps (system-wide install)
 for dep in jsoncpp usrsctp openwebrtc-gst-plugins libsrtp
 do

@@ -29,7 +29,7 @@ fi
 
 #build gst-plugins-bad
 cd $GST_PLUGINS_BAD_DIR
-./autogen.sh --enable-compositor
+./autogen.sh --enable-compositor --enable-gtk-doc=no
 make
 
 #System-wide install

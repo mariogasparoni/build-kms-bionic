@@ -3,6 +3,10 @@
 
 #gstreamer deps
 sudo apt-get install --no-install-recommends -y automake autoconf autopoint bison flex gtk-doc-tools libglib2.0-dev
+
+#clone repos
+./clone-gstreamer-and-plugins.sh
+
 #Build kurento's gstreamer
 ROOT=`pwd`
 GSTREAMER_DIR=$ROOT/gstreamer

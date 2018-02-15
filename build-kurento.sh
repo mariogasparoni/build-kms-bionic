@@ -10,6 +10,8 @@ KURENTO_MODULE_CREATOR_DIR=$ROOT/kurento-module-creator
 KMS_JSONRPC_DIR=$ROOT/kms-jsonrpc
 KMS_JSONCPP_DIR=$ROOT/jsoncpp
 
+./install-base-dependencies.sh
+
 #Get source code
 ./clone-repositories.sh
 

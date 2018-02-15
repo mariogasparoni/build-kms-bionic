@@ -19,11 +19,6 @@ KMS_CMAKE_UTILS_DIR=$ROOT/kms-cmake-utils
 KURENTO_MODULE_CREATOR_DIR=$ROOT/kurento-module-creator
 ./build-kurento-module-creator.sh
 
-#Build (or install from repos) gstreamer
-#Last code of kms-core needs the last version of gstreamer1.5,
-# which isn't in kms repos yet... So, i will compile gstreamer
-#./build-libgstreamer.sh
-
 #Build kms-jsonrpc
 KMS_JSONRPC_DIR=$ROOT/kms-jsonrpc
 ./build-kms-jsonrpc.sh
