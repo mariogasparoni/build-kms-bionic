@@ -32,8 +32,5 @@ cd $ROOT
 #build gst-plugins-ugly
 ./build-gstreamer-plugins-ugly.sh
 
-#build gstreamer-nice
-./build-gstreamer-nice.sh
-
 #build gst-libav
 ./build-gstreamer-libav.sh

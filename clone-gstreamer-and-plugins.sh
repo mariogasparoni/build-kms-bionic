@@ -19,8 +19,3 @@ do
   cd ..
 done
 
-#libnice
-git clone $KURENTO_URL/libnice
-cd libnice
-git checkout $KURENTO_VERSION
-cd ..
