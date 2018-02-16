@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo apt-get install --no-install-recommends -y build-essential cmake debhelper\
+sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential cmake debhelper\
   binutils pkg-config libboost-dev libboost-regex-dev libboost-system-dev\
   libboost-filesystem-dev libboost-program-options-dev libboost-test-dev\
   libboost-thread-dev libboost-log-dev libevent-dev libssl-dev libboost-all-dev\

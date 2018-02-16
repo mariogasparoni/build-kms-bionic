@@ -7,7 +7,7 @@ KURENTO_URL=https://github.com/Kurento
 KURENTO_VERSION=master
 
 #kurento deps (system-wide install)
-for dep in jsoncpp usrsctp openwebrtc-gst-plugins libsrtp
+for dep in jsoncpp usrsctp openwebrtc-gst-plugins libsrtp libnice
 do
   git clone $KURENTO_URL/$dep
   cd $dep
