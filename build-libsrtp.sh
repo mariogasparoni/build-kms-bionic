@@ -5,7 +5,6 @@ LIBSRTP_DIR=$ROOT/libsrtp
 
 #Install deps
 
-#build gst-plugins-bad
 cd $LIBSRTP_DIR
 ./configure
 make
