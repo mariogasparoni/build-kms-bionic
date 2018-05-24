@@ -1,3 +1,0 @@
-[submodule "build-gstreamer"]
-	path = build-gstreamer
-	url = git@github.com:gtmcu/build-gstreamer

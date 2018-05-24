@@ -11,7 +11,7 @@ GST_PLUGIN_PATH="$KMS_CORE_DIR/server:$KMS_CORE_DIR/src/gst-plugins:$KMS_CORE_DI
 #Gstreamer sometimes use this path for libs, which isn't default for some distros
 LD_LIBRARY_PATH="/usr/local/lib"
 
-#Requires gstreamer1.5-tools package
-#sudo apt-get install gstreamer1.5-tools
+#Requires gstreamer1.0-tools package
+#sudo apt-get install gstreamer1.0-tools
 echo "GStreamer Plugins"
-env LD_LIBRARY_PATH=$LD_LIBRARY_PATH GST_PLUGIN_PATH=$GST_PLUGIN_PATH gst-inspect-1.5
+env LD_LIBRARY_PATH=$LD_LIBRARY_PATH GST_PLUGIN_PATH=$GST_PLUGIN_PATH gst-inspect-1.0

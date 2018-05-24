@@ -25,19 +25,13 @@ KMS_JSONCPP_DIR=$ROOT/jsoncpp
 #build kms-filters
 ./build-kms-filters.sh
 
+#Replace GST 1.5 version to 1.0 (xenial's default)
+find $KMS_DIR -name CMakeLists.txt -print0 | xargs -0 sed -i "s/gstreamer\([a-zA-Z0-9-]*\)1.5/gstreamer\11.0/g"
+find $KMS_DIR -name "*.template" -print0 | xargs -0 sed -i "s/gstreamer\([a-zA-Z0-9-]*\)1.5/gstreamer\11.0/g"
+
+./build-kms-config.sh
 
 cd $KMS_DIR
-
-# Create path for loading config modules (Kurento currently a subfolder "kurento" inside of the module config path)
-# Actually Kurento should load it directly from each folder in the given paths passed
-# in 'kurento-media-server -c ...' and not from a subfolder. This might become a patch
-# inside Kurento's loadConfig process.
-
-for path in $KMS_CORE_DIR $KMS_ELEMENTS_DIR
-do
-  mkdir -p $path/modules_config
-  ln -sn $path/src/server/config $path/modules_config/kurento -f
-done
 
 KURENTO_MODULES_DIR="$KMS_CORE_DIR/src/server/kmd;$KMS_ELEMENTS_DIR/src/server/kmd;$KMS_FILTERS_DIR/src/server/kmd";
 CMAKE_MODULE_PATH="$KMS_CMAKE_UTILS_DIR;$KMS_CMAKE_UTILS_DIR/CMake;$KURENTO_MODULE_CREATOR_DIR/classes;$KMS_CORE_DIR;$KMS_CORE_DIR/CMake;$KMS_CORE_DIR/src/server;$KMS_CORE_DIR/src/gst-plugins;$KMS_CORE_DIR/src/gst-plugins/commons;$KMS_JSONRPC_DIR;$KMS_JSONRPC_DIR/src;$KMS_ELEMENTS_DIR/src/server"

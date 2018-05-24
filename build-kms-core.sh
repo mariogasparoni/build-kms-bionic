@@ -27,6 +27,12 @@ KMS_JSONCPP_DIR=$ROOT/jsoncpp
 #TODO: allow jsoncpp to be imported locally (maybe add FindKmsJsonCpp file)
 LIBRARY_PATH="$KMS_JSONCPP_DIR/src/lib_json";
 
+#Replace GST 1.5 version to 1.0 (xenial's default)
+find $KMS_CORE_DIR -name CMakeLists.txt -print0 | xargs -0 sed -i -e "s/gst\([a-zA-Z0-9-]*\)1.5/gst\11.0/g"
+
+sed -i -e "s/gst\([a-zA-Z0-9-]*\)1.5/gst\11.0/g" $KMS_CORE_DIR/debian/control
+sed -i -e "s/gst\([a-zA-Z0-9-]*\)1.5/gst\11.0/g" $KMS_CORE_DIR/debian/kms-core.install
+
 #Build kms-core
 cd $KMS_CORE_DIR
 

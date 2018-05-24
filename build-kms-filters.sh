@@ -20,6 +20,12 @@ sudo apt-get install --no-install-recommends -y libopencv-dev
 #Build kms-elements
 #./build-kms-elements.sh
 
+#Replace GST 1.5 version to 1.0 (xenial's default)
+find $KMS_FILTERS_DIR -name CMakeLists.txt -print0 | xargs -0 sed -i -e "s/gstreamer\([a-zA-Z0-9-]*\)1.5/gstreamer\11.0/g"
+
+sed -i -e "s/gst\([a-zA-Z0-9-]*\)1.5/gst\11.0/g" $KMS_FILTERS_DIR/debian/control
+sed -i -e "s/gst\([a-zA-Z0-9-]*\)1.5/gst\11.0/g" $KMS_FILTERS_DIR/debian/kms-filters.install
+
 #build kms-filters
 cd $KMS_FILTERS_DIR
 KURENTO_MODULES_DIR="$KMS_CORE_DIR/src/server/kmd;$KMS_ELEMENTS_DIR/src/server/kmd";

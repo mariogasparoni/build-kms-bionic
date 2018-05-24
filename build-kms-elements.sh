@@ -13,13 +13,16 @@ KMS_JSONCPP_DIR=$ROOT/jsoncpp
 LIBRARY_PATH="$KMS_JSONCPP_DIR/src/lib_json";
 
 #Install dependencies
-sudo apt-get install --no-install-recommends -y libsoup2.4-dev libnice-dev
+sudo apt-get install --no-install-recommends -y libsoup2.4-dev libnice-dev libsctp-dev
 
 #Build openwebrtc-gst-plugins
 ./build-openwebrtc-gst-plugins.sh
 
-#Build libsrtp
-./build-libsrtp.sh
+#Replace GST 1.5 version to 1.0 (xenial's default)
+find $KMS_ELEMENTS_DIR -name CMakeLists.txt -print0 | xargs -0 sed -i -e "s/gstreamer\([a-zA-Z0-9-]*\)1.5/gstreamer\11.0/g"
+
+sed -i -e "s/gst\([a-zA-Z0-9-]*\)1.5/gst\11.0/g" $KMS_ELEMENTS_DIR/debian/control
+sed -i -e "s/gst\([a-zA-Z0-9-]*\)1.5/gst\11.0/g" $KMS_ELEMENTS_DIR/debian/kms-elements.install
 
 #build kms-elements
 cd $KMS_ELEMENTS_DIR
