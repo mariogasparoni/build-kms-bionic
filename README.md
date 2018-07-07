@@ -1,33 +1,11 @@
 ## Build Kurento Media Server and it's modules locally
 This is intended to be used by developers who wants to develop without
-system-wide/apt installing Kurento Media Server
-
-
-### Build GStreamer and make a system-wide installation
-Init submodule
-```bash
-git submodule init
-git submodule update
-```
-
-To build master version:
-```bash
-cd build-gstreamer
-git checkout kurento
-./build-gstreamer.sh
-```
-
-To build another revision of GStreamer:
-```bash
-cd build-gstreamer
-git checkout kurento
-./build-gstreamer.sh ANOTHER_REVISION
-```
-
+system-wide/apt installing Kurento Media Server and it's libs.
+Currently, this works in Ubuntu 16.04 64Bits (Xenial) and uses GStreamer from Ubuntu
+official repositories
 
 ### Build Kurento Media Server
 ```bash
-git checkout 6.6.1+_with_latest_gstreamer
 ./build-kurento.sh
 ```
 
@@ -36,16 +14,35 @@ git checkout 6.6.1+_with_latest_gstreamer
 ./run-kurento.sh
 ```
 
-### Build kms-core module only
+### Build kms-core module only (for the first time or after CMake's changes)
 ```bash
-git checkout 6.6.1+_with_latest_gstreamer
 ./build-kms-core.sh
+./build-kms-config.sh
 ```
 
-### Build kms-elements module only (depends on kms-core's module build)
+### Build/run kms-core after changes in source code
+```
+cd kms-core
+... (do modifications) ...
+make
+cd ..
+./run-kurento.sh
+```
+
+### Build kms-elements module only (for the first time or after CMake's changes)
+(depends on kms-core's module build)
 ```bash
-git checkout 6.6.1+_with_latest_gstreamer
 ./build-kms-elements.sh
+./build-kms-config.sh
+```
+
+### Build/run kms-elements after changes in source code
+```
+cd kms-elements
+... (do modifications) ...
+make
+cd ..
+./run-kurento.sh
 ```
 
 #### Freely Distributed under the MIT License
