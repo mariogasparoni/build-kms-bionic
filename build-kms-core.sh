@@ -30,6 +30,9 @@ LIBRARY_PATH="$KMS_JSONCPP_DIR/src/lib_json";
 #Replace GST 1.5 version to 1.0 (xenial's default)
 find $KMS_CORE_DIR -name CMakeLists.txt -print0 | xargs -0 sed -i -e "s/gst\([a-zA-Z0-9-]*\)1.5/gst\11.0/g"
 
+#Replace libkmscoreplugins.so to libkmscore.so (This should be commited directly to kms-core)
+find $KMS_CORE_DIR -name CMakeLists.txt -print0 | xargs -0 sed -i -e "s/\${LIBRARY_NAME}plugins/\${LIBRARY_NAME}/g"
+
 sed -i -e "s/gst\([a-zA-Z0-9-]*\)1.5/gst\11.0/g" $KMS_CORE_DIR/debian/control
 sed -i -e "s/gst\([a-zA-Z0-9-]*\)1.5/gst\11.0/g" $KMS_CORE_DIR/debian/kms-core.install
 
