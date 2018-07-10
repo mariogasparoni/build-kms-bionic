@@ -21,6 +21,9 @@ sudo apt-get install --no-install-recommends -y libsoup2.4-dev libnice-dev libsc
 #Replace GST 1.5 version to 1.0 (xenial's default)
 find $KMS_ELEMENTS_DIR -name CMakeLists.txt -print0 | xargs -0 sed -i -e "s/gstreamer\([a-zA-Z0-9-]*\)1.5/gstreamer\11.0/g"
 
+#Replace libkmselementsplugins.so to libkmselements.so (This should be commited directly to kms-elements)
+find $KMS_ELEMENTS_DIR -name CMakeLists.txt -print0 | xargs -0 sed -i -e "s/\${LIBRARY_NAME}plugins/\${LIBRARY_NAME}/g"
+
 sed -i -e "s/gst\([a-zA-Z0-9-]*\)1.5/gst\11.0/g" $KMS_ELEMENTS_DIR/debian/control
 sed -i -e "s/gst\([a-zA-Z0-9-]*\)1.5/gst\11.0/g" $KMS_ELEMENTS_DIR/debian/kms-elements.install
 
