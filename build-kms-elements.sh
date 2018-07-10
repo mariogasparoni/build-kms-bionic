@@ -31,6 +31,17 @@ sed -i -e "s/set_property(TARGET rtpendpoint/set_property(TARGET kmsrtpendpoint/
 sed -i -e "s/target_link_libraries(rtpendpoint/target_link_libraries(kmsrtpendpoint/g" $KMS_ELEMENTS_DIR/src/gst-plugins/rtpendpoint/CMakeLists.txt
 sed -i -e "s/TARGETS rtpendpoint/TARGETS kmsrtpendpoint/g" $KMS_ELEMENTS_DIR/src/gst-plugins/rtpendpoint/CMakeLists.txt
 
+#Rename libkmswebrtcpointlib.so to libkmswebrtcpoint.so
+sed -i -e "s/kmswebrtcendpointlib/kmswebrtcendpoint/g" $KMS_ELEMENTS_DIR/src/gst-plugins/webrtcendpoint/CMakeLists.txt
+sed -i -e "s/kmswebrtcendpointlib/kmswebrtcendpoint/g" $KMS_ELEMENTS_DIR/src/gst-plugins/webrtcendpoint/FindKmsWebRtcEndpointLib.cmake.in
+sed -i -e "s/kmswebrtcendpointlib/kmswebrtcendpoint/g" $KMS_ELEMENTS_DIR/src/server/CMakeLists.txt
+
+#Rename librecorderendpoint.so to libkmsrecorderendpoint.so
+sed -i -e "s/add_library(recorderendpoint/add_library(kmsrecorderendpoint/g" $KMS_ELEMENTS_DIR/src/gst-plugins/recorderendpoint/CMakeLists.txt
+sed -i -e "s/set_property (TARGET recorderendpoint/set_property (TARGET kmsrecorderendpoint/g" $KMS_ELEMENTS_DIR/src/gst-plugins/recorderendpoint/CMakeLists.txt
+sed -i -e "s/target_link_libraries(recorderendpoint/target_link_libraries(kmsrecorderendpoint/g" $KMS_ELEMENTS_DIR/src/gst-plugins/recorderendpoint/CMakeLists.txt
+sed -i -e "s/TARGETS recorderendpoint/TARGETS kmsrecorderendpoint/g" $KMS_ELEMENTS_DIR/src/gst-plugins/recorderendpoint/CMakeLists.txt
+
 #
 sed -i -e "s/gst\([a-zA-Z0-9-]*\)1.5/gst\11.0/g" $KMS_ELEMENTS_DIR/debian/control
 sed -i -e "s/gst\([a-zA-Z0-9-]*\)1.5/gst\11.0/g" $KMS_ELEMENTS_DIR/debian/kms-elements.install
