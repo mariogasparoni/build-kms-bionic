@@ -5,7 +5,7 @@ sudo apt-get update && sudo apt-get install --no-install-recommends -y\
   libboost-filesystem-dev libboost-program-options-dev libboost-test-dev\
   libboost-thread-dev libboost-log-dev libevent-dev libssl-dev\
   git openjdk-8-jdk maven libsigc++-2.0-dev libglibmm-2.4-dev uuid-dev\
-  libgnutls-dev libvpx-dev wget libgstreamer1.0-dev\
+  libgnutls28-dev libvpx-dev wget libgstreamer1.0-dev\
   libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev\
   libgstreamer-plugins-bad1.0-dev\
   gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad\
