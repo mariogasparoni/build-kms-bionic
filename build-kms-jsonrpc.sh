@@ -13,11 +13,10 @@ KMS_JSONCPP_DIR=$ROOT/jsoncpp
 
 LIBRARY_PATH="$KMS_JSONCPP_DIR/src/lib_json";
 CMAKE_MODULE_PATH="$KMS_CMAKE_UTILS_DIR;$KMS_CMAKE_UTILS_DIR/CMake";
-
-cd $KMS_JSONRPC_DIR
-cmake -DCMAKE_MODULE_PATH=$CMAKE_MODULE_PATH
+PKG_CONFIG_PATH="$KMS_JSONCPP_DIR/pkg-config/";
+CMAKE_CXX_FLAGS=" -I$KMS_JSONCPP_DIR/include"
+cd $KMS_JSONRPC_DIR;
+env PKG_CONFIG_PATH=$PKG_CONFIG_PATH cmake -DCMAKE_MODULE_PATH=$CMAKE_MODULE_PATH -DCMAKE_CXX_FLAGS="$CMAKE_CXX_FLAGS"
 env LIBRARY_PATH=$LIBRARY_PATH make
 
-#You can system-wide install , or point this path to your app's CMAKE
-#echo 'You can now make install ...';
-#sudo make install
+cd $ROOT

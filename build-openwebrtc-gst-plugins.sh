@@ -7,6 +7,8 @@ ROOT=`pwd`
 OPENWEBRTC_GST_PLUGINS_DIR=$ROOT/openwebrtc-gst-plugins
 INSTALL_PREFIX="/usr"
 LIBDIR="/usr/lib/x86_64-linux-gnu/"
+USRSCTP_DIR=$ROOT/usrsctp
+CFLAGS=" -I$USRSCTP_DIR/usrsctplib -L$USRSCTP_DIR/usrsctplib/.libs"
 ./build-usrsctp.sh
 
 #Replace GST 1.5 version to 1.0 (xenial's default)
@@ -31,8 +33,10 @@ fi
 cd $OPENWEBRTC_GST_PLUGINS_DIR
 
 ./autogen.sh
-./configure --prefix=$INSTALL_PREFIX --libdir=$LIBDIR
+env CFLAGS="$CFLAGS" ./configure --prefix=$INSTALL_PREFIX --libdir=$LIBDIR
+
+#This file mess with GenericFind/pkg_check_modules when looking for gstreamer-sctp-1.0.pc: remove it
+rm $OPENWEBRTC_GST_PLUGINS_DIR/gstreamer-sctp-1.0-uninstalled.pc
+
 make
-#echo 'You can now make install..'
-sudo make install
 cd $ROOT

@@ -12,6 +12,7 @@ KMS_ELEMENTS_DIR=$ROOT/kms-elements
 KMS_JSONRPC_DIR=$ROOT/kms-jsonrpc
 KMS_JSONCPP_DIR=$ROOT/jsoncpp
 KMS_CONFIG_FILE=$KURENTO_MEDIA_SERVER_DIR/kurento.conf.json
+OPENWEBRTC_GST_PLUGINS_DIR=$ROOT/openwebrtc-gst-plugins
 
 #Kurento find modules recursively, so we don't need to add subfolders
 
@@ -30,7 +31,7 @@ MODULES_DIR="$KMS_CORE_DIR/src/server:$KMS_FILTERS_DIR/src/server:$KMS_ELEMENTS_
 MODULES_CONFIG_DIR="$KMS_CORE_DIR/modules_config:$KMS_ELEMENTS_DIR/modules_config";
 
 #System libs
-LIBRARY_PATH="/usr/local/lib:$KMS_JSONCPP_DIR/src/lib_json:$KMS_JSONRPC_DIR/src";
+LIBRARY_PATH="/usr/local/lib:$KMS_JSONCPP_DIR/src/lib_json:$KMS_JSONRPC_DIR/src:$OPENWEBRTC_GST_PLUGINS_DIR/gst-libs/gst/sctp/.libs/:$OPENWEBRTC_GST_PLUGINS_DIR/gst/videorepair/.libs";
 
 cd $KURENTO_MEDIA_SERVER_DIR/server
 env LD_LIBRARY_PATH=$LIBRARY_PATH GST_PLUGIN_PATH=$GST_PLUGIN_PATH GST_DEBUG=$DEBUG_LEVEL ./kurento-media-server -f $KMS_CONFIG_FILE -p $MODULES_DIR -c $MODULES_CONFIG_DIR

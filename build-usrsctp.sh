@@ -10,6 +10,4 @@ cd $USRSCTP_DIR
 ./bootstrap
 ./configure
 make
-#echo 'You can now make install..'
-sudo make install
 cd $ROOT
