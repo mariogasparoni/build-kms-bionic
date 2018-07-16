@@ -6,6 +6,8 @@ ROOT=`pwd`
 KURENTO_MODULE_CREATOR_DIR=$ROOT/kurento-module-creator
 cd $KURENTO_MODULE_CREATOR_DIR
 
+sudo /var/lib/dpkg/info/ca-certificates-java.postinst configure
+
 #Without the following replacements, other modules will use the wrong
 #path when looking for this module
 #this should be a patch, i guess
