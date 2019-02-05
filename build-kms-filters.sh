@@ -40,7 +40,7 @@ sed -i -e "s/set_property(TARGET faceoverlay/set_property(TARGET kmsfaceoverlay/
 sed -i -e "s/TARGETS faceoverlay/TARGETS kmsfaceoverlay/g" $KMS_FILTERS_DIR/src/gst-plugins/faceoverlay/CMakeLists.txt
 
 PKG_CONFIG_PATH="$OPENWEBRTC_GST_PLUGINS_DIR:$KMS_JSONCPP_DIR/pkg-config/";
-CMAKE_CXX_FLAGS=" -I$KMS_JSONCPP_DIR/include/"
+CMAKE_CXX_FLAGS=" -I$KMS_JSONCPP_DIR/include/ -L$KMS_JSONCPP_DIR/src/lib_json"
 CMAKE_C_FLAGS="$CMAKE_CXX_FLAGS"
 
 sed -i -e "s/gst\([a-zA-Z0-9-]*\)1.5/gst\11.0/g" $KMS_FILTERS_DIR/debian/control
