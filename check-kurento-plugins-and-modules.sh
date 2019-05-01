@@ -14,4 +14,4 @@ LIBRARY_PATH="/usr/local/lib:$KMS_JSONCPP_DIR/src/lib_json:$KMS_JSONRPC_DIR/src:
 #Requires gstreamer1.0-tools package
 #sudo apt-get install gstreamer1.0-tools
 echo "GStreamer Plugins"
-env LD_LIBRARY_PATH=$LD_LIBRARY_PATH GST_PLUGIN_PATH=$GST_PLUGIN_PATH gst-inspect-1.0
+env LD_LIBRARY_PATH=$LIBRARY_PATH GST_PLUGIN_PATH=$GST_PLUGIN_PATH gst-inspect-1.0

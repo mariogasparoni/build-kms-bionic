@@ -25,6 +25,8 @@ find $KMS_ELEMENTS_DIR -name CMakeLists.txt -print0 | xargs -0 sed -i -e "s/gstr
 #Replace libkmselementsplugins.so to libkmselements.so (This should be commited directly to kms-elements)
 find $KMS_ELEMENTS_DIR -name CMakeLists.txt -print0 | xargs -0 sed -i -e "s/\${LIBRARY_NAME}plugins/\${LIBRARY_NAME}/g"
 
+# RENAME is needed to make plugin's name matches filename, according to
+# http://gstreamer-devel.966125.n4.nabble.com/Plugin-loading-fails-with-Gstreamer-1-14-0-td4686497.html
 #Add "kms" to librtpendpoint.so name
 sed -i -e "s/add_library(rtpendpoint/add_library(kmsrtpendpoint/g" $KMS_ELEMENTS_DIR/src/gst-plugins/rtpendpoint/CMakeLists.txt
 sed -i -e "s/add_dependencies(rtpendpoint/add_dependencies(kmsrtpendpoint/g" $KMS_ELEMENTS_DIR/src/gst-plugins/rtpendpoint/CMakeLists.txt

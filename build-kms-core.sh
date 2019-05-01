@@ -31,6 +31,8 @@ PKG_CONFIG_PATH="$KMS_JSONCPP_DIR/pkg-config/";
 #Replace GST 1.5 version to 1.0 (xenial's default)
 find $KMS_CORE_DIR -name CMakeLists.txt -print0 | xargs -0 sed -i -e "s/gst\([a-zA-Z0-9-]*\)1.5/gst\11.0/g"
 
+# RENAME is needed to make plugin's name matches filename, according to
+# http://gstreamer-devel.966125.n4.nabble.com/Plugin-loading-fails-with-Gstreamer-1-14-0-td4686497.html
 #Replace libkmscoreplugins.so to libkmscore.so (This should be commited directly to kms-core)
 find $KMS_CORE_DIR -name CMakeLists.txt -print0 | xargs -0 sed -i -e "s/\${LIBRARY_NAME}plugins/\${LIBRARY_NAME}/g"
 

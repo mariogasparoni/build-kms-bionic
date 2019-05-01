@@ -25,6 +25,8 @@ sudo apt-get install --no-install-recommends -y libopencv-dev
 #Replace GST 1.5 version to 1.0 (xenial's default)
 find $KMS_FILTERS_DIR -name CMakeLists.txt -print0 | xargs -0 sed -i -e "s/gstreamer\([a-zA-Z0-9-]*\)1.5/gstreamer\11.0/g"
 
+# RENAME is needed to make plugin's name matches filename, according to
+# http://gstreamer-devel.966125.n4.nabble.com/Plugin-loading-fails-with-Gstreamer-1-14-0-td4686497.html
 #Add kms to filters names (this should be commited directly to kms-filters)
 for filter in facedetector imageoverlay logooverlay movementdetector opencvfilter
 do
