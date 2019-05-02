@@ -25,12 +25,7 @@ KMS_JSONCPP_DIR=$ROOT/jsoncpp
 #build kms-filters
 ./build-kms-filters.sh
 
-#Replace GST 1.5 version to 1.0 (xenial's default)
-find $KMS_DIR -name CMakeLists.txt -print0 | xargs -0 sed -i "s/gstreamer\([a-zA-Z0-9-]*\)1.5/gstreamer\11.0/g"
-find $KMS_DIR -name "*.template" -print0 | xargs -0 sed -i "s/gstreamer\([a-zA-Z0-9-]*\)1.5/gstreamer\11.0/g"
-
 #Do not use websocketpp from this folder, use package libwebsocketpp-dev  (from bionic repos) instead
-mv $KMS_DIR/server/transport/websocket/websocketpp/ $KMS_DIR/server/transport/websocket/websocketpp.backup
 ./build-kms-config.sh
 
 cd $KMS_DIR

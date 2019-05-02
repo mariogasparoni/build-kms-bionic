@@ -19,36 +19,6 @@ sudo apt-get install --no-install-recommends -y libsoup2.4-dev libnice-dev libsc
 #Build openwebrtc-gst-plugins
 ./build-openwebrtc-gst-plugins.sh
 
-#Replace GST 1.5 version to 1.0 (xenial's default)
-find $KMS_ELEMENTS_DIR -name CMakeLists.txt -print0 | xargs -0 sed -i -e "s/gstreamer\([a-zA-Z0-9-]*\)1.5/gstreamer\11.0/g"
-
-#Replace libkmselementsplugins.so to libkmselements.so (This should be commited directly to kms-elements)
-find $KMS_ELEMENTS_DIR -name CMakeLists.txt -print0 | xargs -0 sed -i -e "s/\${LIBRARY_NAME}plugins/\${LIBRARY_NAME}/g"
-
-# RENAME is needed to make plugin's name matches filename, according to
-# http://gstreamer-devel.966125.n4.nabble.com/Plugin-loading-fails-with-Gstreamer-1-14-0-td4686497.html
-#Add "kms" to librtpendpoint.so name
-sed -i -e "s/add_library(rtpendpoint/add_library(kmsrtpendpoint/g" $KMS_ELEMENTS_DIR/src/gst-plugins/rtpendpoint/CMakeLists.txt
-sed -i -e "s/add_dependencies(rtpendpoint/add_dependencies(kmsrtpendpoint/g" $KMS_ELEMENTS_DIR/src/gst-plugins/rtpendpoint/CMakeLists.txt
-sed -i -e "s/set_property(TARGET rtpendpoint/set_property(TARGET kmsrtpendpoint/g" $KMS_ELEMENTS_DIR/src/gst-plugins/rtpendpoint/CMakeLists.txt
-sed -i -e "s/target_link_libraries(rtpendpoint/target_link_libraries(kmsrtpendpoint/g" $KMS_ELEMENTS_DIR/src/gst-plugins/rtpendpoint/CMakeLists.txt
-sed -i -e "s/TARGETS rtpendpoint/TARGETS kmsrtpendpoint/g" $KMS_ELEMENTS_DIR/src/gst-plugins/rtpendpoint/CMakeLists.txt
-
-#Rename libkmswebrtcpointlib.so to libkmswebrtcpoint.so
-sed -i -e "s/kmswebrtcendpointlib/kmswebrtcendpoint/g" $KMS_ELEMENTS_DIR/src/gst-plugins/webrtcendpoint/CMakeLists.txt
-sed -i -e "s/kmswebrtcendpointlib/kmswebrtcendpoint/g" $KMS_ELEMENTS_DIR/src/gst-plugins/webrtcendpoint/FindKmsWebRtcEndpointLib.cmake.in
-sed -i -e "s/kmswebrtcendpointlib/kmswebrtcendpoint/g" $KMS_ELEMENTS_DIR/src/server/CMakeLists.txt
-
-#Rename librecorderendpoint.so to libkmsrecorderendpoint.so
-sed -i -e "s/add_library(recorderendpoint/add_library(kmsrecorderendpoint/g" $KMS_ELEMENTS_DIR/src/gst-plugins/recorderendpoint/CMakeLists.txt
-sed -i -e "s/set_property (TARGET recorderendpoint/set_property (TARGET kmsrecorderendpoint/g" $KMS_ELEMENTS_DIR/src/gst-plugins/recorderendpoint/CMakeLists.txt
-sed -i -e "s/target_link_libraries(recorderendpoint/target_link_libraries(kmsrecorderendpoint/g" $KMS_ELEMENTS_DIR/src/gst-plugins/recorderendpoint/CMakeLists.txt
-sed -i -e "s/TARGETS recorderendpoint/TARGETS kmsrecorderendpoint/g" $KMS_ELEMENTS_DIR/src/gst-plugins/recorderendpoint/CMakeLists.txt
-
-#
-sed -i -e "s/gst\([a-zA-Z0-9-]*\)1.5/gst\11.0/g" $KMS_ELEMENTS_DIR/debian/control
-sed -i -e "s/gst\([a-zA-Z0-9-]*\)1.5/gst\11.0/g" $KMS_ELEMENTS_DIR/debian/kms-elements.install
-
 #build kms-elements
 cd $KMS_ELEMENTS_DIR
 

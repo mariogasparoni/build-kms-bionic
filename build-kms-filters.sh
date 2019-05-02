@@ -22,31 +22,9 @@ sudo apt-get install --no-install-recommends -y libopencv-dev
 #Build kms-elements
 #./build-kms-elements.sh
 
-#Replace GST 1.5 version to 1.0 (xenial's default)
-find $KMS_FILTERS_DIR -name CMakeLists.txt -print0 | xargs -0 sed -i -e "s/gstreamer\([a-zA-Z0-9-]*\)1.5/gstreamer\11.0/g"
-
-# RENAME is needed to make plugin's name matches filename, according to
-# http://gstreamer-devel.966125.n4.nabble.com/Plugin-loading-fails-with-Gstreamer-1-14-0-td4686497.html
-#Add kms to filters names (this should be commited directly to kms-filters)
-for filter in facedetector imageoverlay logooverlay movementdetector opencvfilter
-do
-  sed -i -e "s/add_library($filter/add_library(kms$filter/g" $KMS_FILTERS_DIR/src/gst-plugins/$filter/CMakeLists.txt
-  sed -i -e "s/target_link_libraries($filter/target_link_libraries(kms$filter/g" $KMS_FILTERS_DIR/src/gst-plugins/$filter/CMakeLists.txt
-  sed -i -e "s/set_property(TARGET $filter/set_property(TARGET kms$filter/g" $KMS_FILTERS_DIR/src/gst-plugins/$filter/CMakeLists.txt
-  sed -i -e "s/TARGETS $filter/TARGETS kms$filter/g" $KMS_FILTERS_DIR/src/gst-plugins/$filter/CMakeLists.txt
-done
-sed -i -e "s/add_library(faceoverlay/add_library(kmsfaceoverlay/g" $KMS_FILTERS_DIR/src/gst-plugins/faceoverlay/CMakeLists.txt
-sed -i -e "s/add_dependencies(faceoverlay imageoverlay facedetector/add_dependencies(kmsfaceoverlay kmsimageoverlay kmsfacedetector/g" $KMS_FILTERS_DIR/src/gst-plugins/faceoverlay/CMakeLists.txt
-sed -i -e "s/target_link_libraries(faceoverlay/target_link_libraries(kmsfaceoverlay/g" $KMS_FILTERS_DIR/src/gst-plugins/faceoverlay/CMakeLists.txt
-sed -i -e "s/set_property(TARGET faceoverlay/set_property(TARGET kmsfaceoverlay/g" $KMS_FILTERS_DIR/src/gst-plugins/faceoverlay/CMakeLists.txt
-sed -i -e "s/TARGETS faceoverlay/TARGETS kmsfaceoverlay/g" $KMS_FILTERS_DIR/src/gst-plugins/faceoverlay/CMakeLists.txt
-
 PKG_CONFIG_PATH="$OPENWEBRTC_GST_PLUGINS_DIR:$KMS_JSONCPP_DIR/pkg-config/";
 CMAKE_CXX_FLAGS=" -I$KMS_JSONCPP_DIR/include/ -L$KMS_JSONCPP_DIR/src/lib_json"
 CMAKE_C_FLAGS="$CMAKE_CXX_FLAGS"
-
-sed -i -e "s/gst\([a-zA-Z0-9-]*\)1.5/gst\11.0/g" $KMS_FILTERS_DIR/debian/control
-sed -i -e "s/gst\([a-zA-Z0-9-]*\)1.5/gst\11.0/g" $KMS_FILTERS_DIR/debian/kms-filters.install
 
 #build kms-filters
 cd $KMS_FILTERS_DIR
