@@ -5,6 +5,8 @@ KMS_CORE_DIR=$ROOT/kms-core
 KMS_FILTERS_DIR=$ROOT/kms-filters
 KMS_ELEMENTS_DIR=$ROOT/kms-elements
 OPENWEBRTC_GST_PLUGINS_DIR=$ROOT/openwebrtc-gst-plugins
+KMS_JSONCPP_DIR=$ROOT/jsoncpp
+KMS_JSONRPC_DIR=$ROOT/kms-jsonrpc
 
 GST_PLUGIN_PATH="$KMS_CORE_DIR/server:$KMS_CORE_DIR/src/gst-plugins:$KMS_CORE_DIR/src/gst-plugins/commons:$KMS_ELEMENTS_DIR/src/server:$KMS_ELEMENTS_DIR/src/gst-plugins:$KMS_FILTERS_DIR/src/server:$KMS_FILTERS_DIR/src/gst-plugins";
 
