@@ -16,7 +16,17 @@ do
 done;
 
 #kurento modules (all build-locally)
-for module in kms-cmake-utils kurento-module-creator kms-jsonrpc kms-core kms-elements kms-filters
+for module in kms-cmake-utils kurento-module-creator kms-jsonrpc
+do
+  git clone $KURENTO_URL/$module
+  cd $module
+  git checkout $KURENTO_VERSION
+  cd ..
+done;
+
+KURENTO_URL=https://github.com/mariogasparoni
+KURENTO_VERSION=gstreamer-1.14-bionic
+for module in kms-core kms-elements kms-filters
 do
   git clone $KURENTO_URL/$module
   cd $module
